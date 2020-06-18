@@ -31,9 +31,9 @@ public class Metadata: Decodable {
     public let totalCount: Int
 }
 
-public class City: Decodable {
+public class City: Decodable, Encodable {
     public let id: Int
-    public let wikiDataId: String
+    public let wikiDataId: String?
     public let type: String
     public let city: String
     public let name: String

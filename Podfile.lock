@@ -2,23 +2,27 @@ PODS:
   - Alamofire (5.2.0)
   - IQKeyboardManagerSwift (6.5.5)
   - SearchTextField (1.2.4)
+  - SwiftSVG (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
   - IQKeyboardManagerSwift
   - SearchTextField
+  - SwiftSVG
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - IQKeyboardManagerSwift
     - SearchTextField
+    - SwiftSVG
 
 SPEC CHECKSUMS:
   Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   SearchTextField: 40dc3cc57def5a211f263cac263622c163bbc25a
+  SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: 948d360c0fdad2abf69161d29d7072501889fa45
+PODFILE CHECKSUM: 4aab61f517255127e5d7c44b95a88fb8d0546b81
 
 COCOAPODS: 1.8.4

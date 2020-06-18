@@ -92,7 +92,6 @@ extension CitiesViewController {
             
             self.citiesDataSource.items = viewModels
             self.tableView.reloadData()
-            print("CITIES COUNT: \(viewModels.count)")
         }
     }
 }
@@ -117,8 +116,7 @@ extension CitiesViewController {
 extension CitiesViewController: CitySearchDelegate {
     // MARK: - CitySearchDelegate
     func citySelected(item: CityViewModel) {
-        CacheDataManager.save(item, with: "\(item.id)")
-        
+        item.save()
         self.citiesDataSource.items.append(item)
         self.tableView.reloadData()
     }
@@ -127,14 +125,18 @@ extension CitiesViewController: CitySearchDelegate {
 extension CitiesViewController: BaseTableViewDelegate {
     func didSelectRow(item: Any) {
         guard let cityViewModel = item as? CityViewModel else { return }
-        print("CITY: \(cityViewModel.name)")
+        
         // open weather info for the selected city
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyBoard.instantiateViewController(
+            withIdentifier: "WeatherViewController"
+        ) as! WeatherViewController
+        controller.cityViewModel = cityViewModel
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func deletedRow(item: Any) {
         guard let cityViewModel = item as? CityViewModel else { return }
-        CacheDataManager.delete("\(cityViewModel.id)")
-        print("DELETE CITY: \(cityViewModel.name)")
-        // open weather info for the selected city
+        cityViewModel.delete()
     }
 }

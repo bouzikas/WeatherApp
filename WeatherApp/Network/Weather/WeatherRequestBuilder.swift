@@ -2,14 +2,14 @@
 //  CitiesRequestBuilder.swift
 //  WeatherApp
 //
-//  Created by Dimitris Bouzikas on 16/06/2020.
+//  Created by Dimitris Bouzikas on 17/06/2020.
 //  Copyright © 2020 Bouzikas. All rights reserved.
 //
 
 import Alamofire
 import Foundation
 
-enum CitiesRequestBuilder: URLRequestConvertible {
+enum WeatherRequestBuilder: URLRequestConvertible {
     case search(queries: [QueryKVO])
     
     private var httpMethod: HTTPMethod {
@@ -19,21 +19,25 @@ enum CitiesRequestBuilder: URLRequestConvertible {
     private var baseUrl: URL {
         switch self {
         case .search:
-            return try! Constants.Api.cityUrl.asURL()
+            return try! Constants.Api.weatherUrl.asURL()
         }
     }
     
     private var path: String {
         switch self {
         case .search:
-            return "/cities"
+            return "/weather.ashx"
         }
     }
 
     private var parameters: [String: Any] {
         switch self {
         case .search(let queries):
-            return QueryKVO.convert(queriesKVO: queries)
+            var params = QueryKVO.convert(queriesKVO: queries)
+            let apiKey: [String: Any] = ["key": Constants.Api.weatherKey]
+            
+            params.add(apiKey)
+            return params
         }
     }
     
@@ -42,10 +46,6 @@ enum CitiesRequestBuilder: URLRequestConvertible {
 
         request = try URLEncoding.default.encode(request, with: parameters)
         request.httpMethod = httpMethod.rawValue
-        request.setValue(
-            Constants.Api.cityKey,
-            forHTTPHeaderField: Constants.Keys.xMashape
-        )
         
         return request
     }

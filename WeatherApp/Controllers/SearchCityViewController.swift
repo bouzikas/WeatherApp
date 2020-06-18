@@ -51,6 +51,7 @@ class SearchCityViewController: UIViewController {
         searchTextField.minCharactersNumberToStartFiltering = minCharactersNumberToStartFiltering
         searchTextField.tableBottomMargin = 5.0
         searchTextField.theme.cellHeight = 70
+        searchTextField.forceNoFiltering = true
         
         /**
          * Update data source when the user stops typing.
@@ -103,11 +104,5 @@ extension SearchCityViewController: UITextFieldDelegate {
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField != searchTextField {
-//            nextBtn.isEnabled = true
-        }
     }
 }

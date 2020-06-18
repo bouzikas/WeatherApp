@@ -20,7 +20,6 @@ public class CitiesManager {
     ) throws -> ([City], Pagination) {
         do {
             let data = try network.search(queries: query)
-//            print("DATA:" + (String(data: data, encoding: .utf8) ?? "---"))
             return try translation.searchResponse(data)
         } catch {
             throw error

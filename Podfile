@@ -11,6 +11,7 @@ target 'WeatherApp' do
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
   pod 'SearchTextField'
+  pod 'SwiftSVG'
   
   target 'WeatherAppTests' do
     inherit! :search_paths

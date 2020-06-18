@@ -41,7 +41,6 @@ public class CacheDataManager {
         
         if !FileManager.default.fileExists(atPath: url.path) {
             return nil
-//            fatalError("File not found at path \(url.path)")
         }
         
         if let data = FileManager.default.contents(atPath: url.path) {
@@ -81,7 +80,7 @@ public class CacheDataManager {
             return modelObjects
             
         } catch {
-            throw TranslationError.wrongFormat // fatalError("could not load any files")
+            throw TranslationError.wrongFormat
         }
     }
     

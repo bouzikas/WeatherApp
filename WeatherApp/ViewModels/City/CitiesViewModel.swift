@@ -40,11 +40,10 @@ public struct CitiesViewModel {
         self.viewModels.value?.removeAll()
         
         do {
-            let cityViewModels = try CacheDataManager.loadAll(
-                CityViewModel.self
-            )
-                //.sorted(by: {$0.createdAt < $1.createdAt})
-            self.viewModels.value = cityViewModels
+            let cities = try CacheDataManager.loadAll(City.self)
+            self.viewModels.value = cities.map {
+                return CityViewModel(city: $0)
+            }
         } catch {
             self.error.value = error
         }
